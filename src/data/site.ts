@@ -53,6 +53,7 @@ export type Experience = {
   duration?: string;
   location?: string;
   summary: string;
+  featured?: boolean;
 };
 
 export const experience: Experience[] = [
@@ -65,6 +66,7 @@ export const experience: Experience[] = [
     location: "On-site",
     summary:
       "Starting first full-time role as Graduate Engineer Trainee (GET), focusing on backend software engineering, scalable architectures, and core system services.",
+    featured: true,
   },
   {
     company: "Ninternet",
@@ -72,11 +74,14 @@ export const experience: Experience[] = [
     start: "June 2026",
     end: "August 2026",
     duration: "3 mos internship",
-    location: "On-site",
+    location: "Remote",
     summary:
       "Authored the PRD and built the captive portal backend, preparing it for a live on-site demo of the Wi-Fi mesh platform to senior telecom executives. Built and documented REST API endpoints for a Wi-Fi mesh network platform, using Redis for token validation and a MySQL data layer on AWS RDS.",
+    featured: true,
   },
 ];
+
+export const featuredExperience = experience;
 
 export type Education = {
   institution: string;

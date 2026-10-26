@@ -1,7 +1,9 @@
 import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ContactList } from "../components/ContactList";
 import { EducationTimeline } from "../components/EducationTimeline";
+import { ExperienceModal } from "../components/ExperienceModal";
 import { ExperienceTimeline } from "../components/ExperienceTimeline";
 import { ProjectCard } from "../components/ProjectCard";
 import {
@@ -16,6 +18,8 @@ import {
 } from "../data/site";
 
 export function HomePage() {
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+
   return (
     <main>
       <section className="hero">
@@ -33,10 +37,25 @@ export function HomePage() {
       <section>
         <div className="section-head">
           <h2>Experience</h2>
-          <span className="count">[ Active + 3 mos internship ]</span>
+          <div className="experience-head-actions">
+            <span className="count">[ Active + 3 mos internship ]</span>
+            <button
+              type="button"
+              className="journey-btn"
+              onClick={() => setIsHistoryOpen(true)}
+              title="View career journey from Ninternet to GridCrest Technologies"
+            >
+              ▶ Career Journey
+            </button>
+          </div>
         </div>
         <ExperienceTimeline />
       </section>
+
+      <ExperienceModal
+        isOpen={isHistoryOpen}
+        onClose={() => setIsHistoryOpen(false)}
+      />
 
       <section>
         <div className="section-head">
