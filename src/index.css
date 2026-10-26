@@ -1,0 +1,676 @@
+:root,
+html[data-theme="light"] {
+  --bg: #f6f6f4;
+  --text: #1c1b19;
+  --muted: rgba(28, 27, 25, 0.58);
+  --faint: rgba(28, 27, 25, 0.18);
+  --line: rgba(82, 82, 82, 0.45);
+  --online: #22c55e;
+  --idle: #eab308;
+  --dnd: #ef4444;
+  --offline: #737373;
+}
+
+html[data-theme="dark"] {
+  --bg: #121314;
+  --text: #ecebe8;
+  --muted: rgba(236, 235, 232, 0.58);
+  --faint: rgba(236, 235, 232, 0.16);
+  --line: rgba(163, 163, 163, 0.42);
+  --online: #4ade80;
+  --idle: #facc15;
+  --dnd: #f87171;
+  --offline: #737373;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+html {
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Geist, ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(1.85rem, 3vw, 2.25rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.mono {
+  font-family: "Geist Mono", ui-monospace, monospace;
+}
+
+.shell {
+  position: relative;
+  max-width: 48rem;
+  margin: 0 auto;
+  min-height: 100svh;
+}
+
+.rail {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-left: 1px dashed var(--line);
+  pointer-events: none;
+}
+
+.page {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0 1.25rem 3.5rem;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 2.4rem 0 0.4rem;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.status-cluster {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.status-cluster time {
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--offline);
+  flex-shrink: 0;
+}
+
+.status-dot--online {
+  background: var(--online);
+}
+.status-dot--idle {
+  background: var(--idle);
+}
+.status-dot--dnd {
+  background: var(--dnd);
+}
+.status-dot--offline {
+  background: var(--offline);
+}
+
+.status-meta {
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 14rem;
+}
+
+.hint {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: help;
+  opacity: 0.45;
+  text-decoration: underline;
+  font-size: 0.65rem;
+}
+
+.hint:hover {
+  opacity: 1;
+}
+
+.theme-toggle,
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.theme-toggle:hover,
+.back-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+html[data-theme="dark"] .theme-toggle:hover {
+  color: #facc15;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 3.1rem;
+  padding: 2.2rem 0 2.4rem;
+}
+
+main > section + section {
+  border-top: 1px dashed var(--faint);
+  padding-top: 3.1rem;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.role {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  opacity: 0.6;
+}
+
+.bio {
+  opacity: 0.9;
+  text-align: justify;
+  max-width: 42rem;
+}
+
+.section-lead {
+  margin-bottom: 1.5rem;
+}
+
+.contact-note {
+  margin: 0.85rem 0 1.1rem;
+}
+
+.italic {
+  font-family: Newsreader, Georgia, serif;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.resume {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  width: fit-content;
+  padding-top: 0.35rem;
+}
+
+.resume:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.15rem;
+}
+
+.count {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  opacity: 0.5;
+}
+
+.post-list,
+.contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.post-list li,
+.contact-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+}
+
+.post-list a {
+  font-family: Newsreader, Georgia, serif;
+  font-size: 1.05rem;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.post-list a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.post-list time,
+.contact-list span:first-child {
+  opacity: 0.5;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.leaders {
+  flex: 1;
+  min-width: 1.25rem;
+  border-bottom: 1px dotted var(--faint);
+  transform: translateY(-0.25rem);
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.7rem;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.project-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.project-top h3 {
+  display: inline;
+}
+
+.muted {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 400;
+  opacity: 0.5;
+}
+
+.project p {
+  opacity: 0.82;
+  font-size: 0.98rem;
+}
+
+.stack {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.75rem !important;
+  opacity: 0.5 !important;
+  padding-top: 0.15rem;
+}
+
+.project-links {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.project-links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.see-all-wrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.6rem;
+}
+
+.see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  border: 1px dashed var(--line);
+  padding: 0.55rem 0.8rem;
+  opacity: 0.85;
+}
+
+.see-all:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+
+@keyframes timelineSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes radarPing {
+  0% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  70%,
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.timeline {
+  list-style: none;
+  margin: 0.4rem 0 0;
+  padding: 0 0 0 0.15rem;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 1.7rem 1.35rem;
+  border-left: 1px dashed var(--line);
+  animation: timelineSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.timeline-item:hover {
+  border-left-color: var(--text);
+  transform: translateX(3px);
+}
+
+.timeline-item--current {
+  border-left-style: solid;
+  border-left-color: rgba(74, 222, 128, 0.35);
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0.15rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -4px;
+  top: 0.42rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text);
+  box-shadow: 0 0 0 4px var(--bg);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.timeline-item:hover .timeline-dot {
+  transform: scale(1.3);
+  background: var(--online);
+}
+
+.timeline-dot--pulse {
+  background: var(--online);
+}
+
+.timeline-dot--pulse::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1.5px solid var(--online);
+  animation: radarPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+.timeline-badge {
+  display: inline-block;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.65rem;
+  color: var(--online);
+  border: 1px solid var(--online);
+  border-radius: 2px;
+  padding: 0.05rem 0.35rem;
+  margin-left: 0.5rem;
+  letter-spacing: 0.04em;
+  opacity: 0.9;
+  vertical-align: baseline;
+}
+
+.timeline-when {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  opacity: 0.5;
+  margin-bottom: 0.2rem;
+}
+
+.timeline-item h3 {
+  margin-bottom: 0.25rem;
+}
+
+.timeline-item p:last-child {
+  opacity: 0.8;
+  font-size: 0.95rem;
+}
+
+.contact-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.contact-list a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.icon-btn {
+  display: inline-flex;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.icon-btn:hover {
+  opacity: 1;
+}
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-top: 1px dashed var(--faint);
+  padding-top: 1.4rem;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  opacity: 0.55;
+}
+
+.post-meta {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  opacity: 0.55;
+  margin-bottom: 0.85rem;
+}
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding-top: 1.4rem;
+  opacity: 0.92;
+  text-align: justify;
+}
+
+.prose h2 {
+  font-size: 1.05rem;
+  font-weight: 500;
+  padding-top: 0.4rem;
+}
+
+.prose code {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.86em;
+  border: 1px dashed var(--faint);
+  padding: 0.05rem 0.3rem;
+}
+
+.skills-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.skill-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+}
+
+.skill-cat {
+  opacity: 0.6;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.skill-vals {
+  font-size: 0.82rem;
+  opacity: 0.9;
+  text-align: right;
+  flex-shrink: 1;
+}
+
+.achievements-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.achievements-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.achievements-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  opacity: 0.45;
+  font-family: "Geist Mono", ui-monospace, monospace;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding-inline: 1rem;
+  }
+
+  .status-meta {
+    display: none;
+  }
+
+  .post-list .leaders,
+  .post-list time {
+    display: none;
+  }
+
+  .skill-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+
+  .skill-row .leaders {
+    display: none;
+  }
+
+  .skill-vals {
+    text-align: left;
+  }
+
+  .bio {
+    text-align: left;
+  }
+}
+
