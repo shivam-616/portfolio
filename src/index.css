@@ -427,6 +427,123 @@ main > section + section {
   }
 }
 
+.timeline-container {
+  position: relative;
+}
+
+.timeline-progress-beam {
+  position: absolute;
+  left: 0.15rem;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--online), #4ade80);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.4);
+  pointer-events: none;
+  z-index: 2;
+  transition: height 0.06s linear;
+}
+
+.timeline-walker {
+  position: absolute;
+  left: calc(0.15rem - 11px);
+  top: 0;
+  width: 22px;
+  height: 30px;
+  pointer-events: none;
+  z-index: 10;
+  will-change: transform;
+  transition: transform 0.12s cubic-bezier(0.2, 0.8, 0.4, 1);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.timeline-walker.up svg {
+  transform: scaleY(-1);
+}
+
+/* Walking animations */
+.timeline-walker.walking .walker-leg-left {
+  animation: walkerLegLeft 0.32s infinite ease-in-out;
+  transform-origin: 10px 18px;
+}
+
+.timeline-walker.walking .walker-leg-right {
+  animation: walkerLegRight 0.32s infinite ease-in-out;
+  transform-origin: 13px 18px;
+}
+
+.timeline-walker.walking .walker-arm-left {
+  animation: walkerArmLeft 0.32s infinite ease-in-out;
+  transform-origin: 9px 11px;
+}
+
+.timeline-walker.walking .walker-arm-right {
+  animation: walkerArmRight 0.32s infinite ease-in-out;
+  transform-origin: 14px 11px;
+}
+
+.timeline-walker.walking .walker-torso {
+  animation: walkerBob 0.32s infinite ease-in-out;
+}
+
+/* Idle animation */
+.timeline-walker.idle .walker-torso {
+  animation: walkerBreathe 2.4s infinite ease-in-out;
+}
+
+@keyframes walkerLegLeft {
+  0%, 100% {
+    transform: rotate(-22deg);
+  }
+  50% {
+    transform: rotate(22deg);
+  }
+}
+
+@keyframes walkerLegRight {
+  0%, 100% {
+    transform: rotate(22deg);
+  }
+  50% {
+    transform: rotate(-22deg);
+  }
+}
+
+@keyframes walkerArmLeft {
+  0%, 100% {
+    transform: rotate(20deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+}
+
+@keyframes walkerArmRight {
+  0%, 100% {
+    transform: rotate(-20deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+}
+
+@keyframes walkerBob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1.5px);
+  }
+}
+
+@keyframes walkerBreathe {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(0.8px);
+  }
+}
+
 .timeline {
   list-style: none;
   margin: 0.4rem 0 0;
@@ -477,6 +594,25 @@ main > section + section {
 }
 
 .timeline-dot--pulse::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1.5px solid var(--online);
+  animation: radarPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+.timeline-dot--green-signal {
+  background: var(--online) !important;
+  box-shadow: 0 0 0 4px var(--bg), 0 0 8px var(--online) !important;
+  transition: all 0.35s ease;
+}
+
+.timeline-dot--green-signal::after {
   content: "";
   position: absolute;
   left: -2px;

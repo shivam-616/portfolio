@@ -7,7 +7,6 @@ import { ProjectCard } from "../components/ProjectCard";
 import {
   achievements,
   education,
-  experience,
   featuredProjects,
   formatPostDate,
   posts,
@@ -34,7 +33,7 @@ export function HomePage() {
       <section>
         <div className="section-head">
           <h2>Experience</h2>
-          <span className="count">[ {experience.length} ]</span>
+          <span className="count">[ Active + 3 mos internship ]</span>
         </div>
         <ExperienceTimeline />
       </section>

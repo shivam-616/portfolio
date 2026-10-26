@@ -5,10 +5,10 @@
 
 export const site = {
   name: "Shivam Mittal",
-  title: "Software Engineer · GET at Gridcrest Technology",
+  title: "Software Engineer · GET at GridCrest Technologies",
   domain: "shivam-616.github.io",
   tagline: "Shivam Mittal — Portfolio",
-  bio: "Computer Science graduate from Vellore Institute of Technology starting my first role as a Graduate Engineer Trainee (GET) at Gridcrest Technology. Backend-focused software engineer comfortable with Java, Spring Boot, REST APIs, Apache Kafka, and Docker microservices.",
+  bio: "Computer Science graduate from Vellore Institute of Technology starting my first role as a Graduate Engineer Trainee (GET) at GridCrest Technologies. Backend-focused software engineer comfortable with Java, Spring Boot, REST APIs, Apache Kafka, and Docker microservices.",
   resumePath: "/resume.pdf",
   timezone: "Asia/Kolkata",
   timezoneLabel: "IST",
@@ -50,16 +50,18 @@ export type Experience = {
   role: string;
   start: string;
   end: string | null;
+  duration?: string;
   location?: string;
   summary: string;
 };
 
 export const experience: Experience[] = [
   {
-    company: "Gridcrest Technology",
+    company: "GridCrest Technologies",
     role: "Graduate Engineer Trainee (GET)",
     start: "Nov 2, 2026",
     end: null,
+    duration: "Active Company",
     location: "On-site",
     summary:
       "Starting first full-time role as Graduate Engineer Trainee (GET), focusing on backend software engineering, scalable architectures, and core system services.",
@@ -69,6 +71,7 @@ export const experience: Experience[] = [
     role: "Event Development Intern",
     start: "June 2026",
     end: "August 2026",
+    duration: "3 mos internship",
     location: "On-site",
     summary:
       "Authored the PRD and built the captive portal backend, preparing it for a live on-site demo of the Wi-Fi mesh platform to senior telecom executives. Built and documented REST API endpoints for a Wi-Fi mesh network platform, using Redis for token validation and a MySQL data layer on AWS RDS.",
